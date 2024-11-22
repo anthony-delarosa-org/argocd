@@ -28,14 +28,14 @@ jobs:
       # Install kubectl
       - uses: azure/setup-kubectl@v4
         with:
-           version: '1.28' # default is latest stable
+           version: 'v1.29.0' # default is latest stable
         id: install
 
       # Configure kubectl
       - uses: azure/k8s-set-context@v4
         with:
            method: kubeconfig
-           kubeconfig: {{ secrets.KUBE_DEMO_CONFIG }}
+           kubeconfig: ${{ secrets.KUBE_DEMO_CONFIG }}
 
       # Get Nodes
       - name: Get Nodes Info

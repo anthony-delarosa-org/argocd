@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wordpress-dev
+  namespace: wordpress
+spec:
+  project: default
+    helm:
+      parameters:
+        - name: CHART_VERSION
+          value: 24.0.3
+        - name: service.type
+          value: "ClusterIP"
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: wordpress
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: wordpress
+  syncPolicy:
+    automated:
+      selfHeal: false
+      prune: true

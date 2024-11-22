@@ -10,6 +10,7 @@ spec:
   source:
     repoURL: https://github.com/anthony-delarosa-org/argocd.git
     targetRevision: HEAD
+    path: app-sets
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

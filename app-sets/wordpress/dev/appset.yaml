@@ -5,14 +5,12 @@ metadata:
   namespace: wordpress
 spec:
   project: default
-    helm:
-      parameters:
-        - name: CHART_VERSION
-          value: 24.0.3
-        - name: service.type
-          value: "ClusterIP"
-    repoURL: https://charts.bitnami.com/bitnami
+  source:
     chart: wordpress
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 24.0.3
+    helm:
+      releaseName: wordpress
   destination:
     server: https://kubernetes.default.svc
     namespace: wordpress

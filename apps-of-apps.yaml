@@ -9,8 +9,10 @@ spec:
   project: default
   source:
     repoURL: https://github.com/anthony-delarosa-org/argocd.git
-    targetRevision: HEAD
+    targetRevision: main
     path: ./apps
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

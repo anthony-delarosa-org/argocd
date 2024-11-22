@@ -2,19 +2,25 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: wordpress
-  namespace: wordpress
 spec:
-  project: default
-  source:
-    chart: wordpress
-    repoURL: https://github.com/bitnami/charts/bitnami
-    targetRevision: 24.0.3
   destination:
+    name: ''
+    namespace: wordpress
     server: https://kubernetes.default.svc
-    namespace: wordpress 
+  source:
+    path: ''
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 24.0.3
+    chart: wordpress
+    helm:
+      parameters:
+        - name: service.type
+          value: ClusterIP
+  sources: []
+  project: default
   syncPolicy:
-    syncOptions:
-      - CreateNamespace=true  
     automated:
       prune: true
       selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
